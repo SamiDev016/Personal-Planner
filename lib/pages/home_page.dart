@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:raihane_planner_app/pages/add_category.dart';
+
+import '../widgets/my_task.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -21,7 +24,12 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AddCategory(),
+                ),
+              ),
         shape: const CircleBorder(),
         child: const Icon(Icons.add),
       ),
@@ -33,20 +41,33 @@ class _MyHomePageState extends State<MyHomePage> {
               alignment: Alignment.center,
               height: 50,
               width: double.infinity,
-              decoration: BoxDecoration(
-                
+              child: const Text(
+                "Categorys",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              child: const Text("Categorys",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
             ),
             Divider(
               color: Theme.of(context).colorScheme.secondary,
             ),
-            ListTile(
-              title: const Text("Laravel",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-              leading: Checkbox(value: false, onChanged: (value){}),
-              subtitle: const LinearProgressIndicator(value: .6,),
+            const MyTask(
+              indicatorValue: .6,
+              isCompleted: false,
+              title: "Laravel",
+              
             ),
-            const Divider(),
+            const MyTask(
+              indicatorValue: .3,
+              isCompleted: false,
+              title: "Beauroutique",
+            ),
+            const MyTask(
+              indicatorValue: .6,
+              isCompleted: true,
+              title: "NodeJs",
+            ),
           ],
         ),
       ),
